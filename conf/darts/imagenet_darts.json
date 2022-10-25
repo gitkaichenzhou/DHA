@@ -1,0 +1,77 @@
+{   
+    "seed": 666,
+    "gpu": "0",
+    "cudnn_enabled": true,
+    "cudnn_benchmark": true,
+    "save_root": "train_model",
+    "save_name": "",
+    "load_name": "",
+    "model_path": "",
+    "save_freq": 5,
+    "tune_dataset": {
+        "name": "imagenet",
+        "root": "/Data/",
+        "root_cloud": "/cache/dataset/imagenet_ilsvrc",
+        "num_class": 1000,
+        "mean": [0.485, 0.456, 0.406],
+        "std": [0.229, 0.224, 0.225],
+        "img_min_size": 224,
+        "val_ratio": 0.02,
+        "prefetch": 8,
+        "cutout_size": null,
+        "batch_size": 256,
+        "workers": 16,
+        "pin": false,
+        "-Comment": "Tune with the hyperparameters",
+        "limited": false
+    },
+
+    "hpo_tune":{
+        "help": "Method for train_p, val_h",
+        "h_lr": 1e-8,
+        "h_momentum": 0.9,
+        "h_nesterov": true,
+        "h_weight_decay": 0.0005,
+        "weight_decay_low": 0, 
+        "weight_decay_up": 1e-4,
+        "learning_low": 0,
+        "learning_up": 0.8
+    },
+
+    "da_tune":{
+        "help": "Method for train_p, val_h",
+        "policy": 14,
+        "d_lr": 1e-6,
+        "d_momentum": 0.9,
+        "d_nesterov": true,
+        "d_weight_decay": 0.0005,
+        "temperature": 2
+    },
+
+    "tune":{
+        "batch_size": 64,
+        "epochs": 250,
+        "retrain_epochs": 250,
+        "start_epoch": 0,
+        "w_lr": 0.1,
+        "w_lr_min": 0.001,
+        "w_momentum": 0.9,
+        "w_nesterov": true,
+        "w_weight_decay": 3e-5,
+        "w_grad_clip": 5,
+        "print_freq": 50,
+        "-Comments": "Tunning Hyper-parameter",
+        "label_smooth": 0.1,
+        "gamma": 0.97,
+        "decay_period": 1
+    },
+
+    "tune_architecture":{
+        "init_channels": 48,
+        "n_classes": 1000,
+        "layers": 14,
+        "drop_path_prob":0,
+        "aux_weight": 0.4
+    }
+
+}
